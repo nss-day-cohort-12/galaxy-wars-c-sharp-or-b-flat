@@ -29,7 +29,7 @@ namespace GalaxyWars
 
         while (spacePope.population > 0 && nasa.population > 0 && stormTroopers.population > 0)
         {
-                Console.WriteLine("It is year {0}.", year);
+            Console.WriteLine("It is year {0}.", year);
             if (year > 1) // if at least one year has passed, grant bonus pop to science type
             {
                 foreach (AlienSpecies species in speciesList)
@@ -61,28 +61,30 @@ namespace GalaxyWars
 
             foreach (AlienSpecies currAttacker in speciesList) // let each species attack once
             {
+                Console.WriteLine("{0} is attacking!", currAttacker.name);
                 foreach (AlienSpecies currDefender in speciesList) // let each species defend once against each attacker
-                {
-                    if (currAttacker.name != currDefender.name) // apply bonus attack from battle rules
-                    {
-                        var whoAttackerBeats = new List<string> { };
-                        foreach (KeyValuePair<string, string> rule in battleRules) // loop through rules
+                    {   
+                        if (currAttacker.name != currDefender.name) // apply bonus attack from battle rules
                         {
-                            if (rule.Key == currAttacker.affiliation) // add each type attacker defeats to list
+                            Console.WriteLine("{0}'s current opponent is {1}.", currAttacker.name, currDefender.name);
+                            var whoAttackerBeats = new List<string> { };
+                            foreach (KeyValuePair<string, string> rule in battleRules) // loop through rules
                             {
-                                whoAttackerBeats.Add(rule.Value);
+                                if (rule.Key == currAttacker.affiliation) // add each type attacker defeats to list
+                                {
+                                    whoAttackerBeats.Add(rule.Value);
+                                }
+                            }
+                            foreach (string defenderType in whoAttackerBeats)
+                            {
+                                if (currDefender.affiliation == defenderType)
+                                {
+                                    currDefender.population -= Math.Floor(currDefender.population * .02);
+                                    Console.WriteLine("{0} attacks {1}. Their population is reduced to {2}.", currAttacker.name, currDefender.name, currDefender.population);
+                                }
+                                // make sure no one is dead
                             }
                         }
-                        foreach (string defenderType in whoAttackerBeats)
-                        {
-                            if (currDefender.affiliation == defenderType)
-                            {
-                                currDefender.population -= Math.Floor(currDefender.population * .02);
-                                Console.WriteLine("{0} attacks {1}. Their population is reduced to {2}.", currAttacker.name, currDefender.name, currDefender.population);
-                            }
-                            // make sure no one is dead
-                        }
-                    }
 
                     if (currAttacker.affiliation == "Warrior") // add warrior type bonus
                     {
@@ -90,7 +92,7 @@ namespace GalaxyWars
                         Console.WriteLine("{0}, the warriors, kill extra 10000. {1}'s population is now {2}.", currAttacker.name, currDefender.name, currDefender.population);
                         // make sure no one is dead
                     }
-                    if (currAttacker.affiliation == "Religion")
+                    if (currAttacker.affiliation == "Religion" && currDefender.affiliation != "Religion")
                     {
                         double bonus = Math.Floor(currDefender.population * .01);
                         currAttacker.population += bonus; // religious attacker gains some population from defender
