@@ -55,6 +55,9 @@ namespace GalaxyWars
                 newKey = ruleToChange.Value; // create references for new key value pair
                 newValue = ruleToChange.Key;
 
+                Console.WriteLine("In the last era, {0} defeated {1}.", ruleToChange.Key, ruleToChange.Value);
+                Console.WriteLine("Now, the tables are turned. {0} will defeat {1}.", newKey, newValue);
+
                 battleRules.Remove(ruleToChange); // remove old rule
                 battleRules.Add(new KeyValuePair<string, string>(newKey, newValue)); // add new reversed rule
             }
@@ -80,13 +83,17 @@ namespace GalaxyWars
                                 if (currDefender.affiliation == defenderType)
                                 {
                                     currDefender.population -= Math.Floor(currDefender.population * .02);
-                                    Console.WriteLine("{0} attacks {1}. Their population is reduced to {2}.", currAttacker.name, currDefender.name, currDefender.population);
+                                    Console.WriteLine("{0} attacks {1} and wins. Their population is reduced to {2}.", currAttacker.name, currDefender.name, currDefender.population);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("{0}'s attacks are not effective against {1}.", currAttacker.name, currDefender.name);
                                 }
                                 // make sure no one is dead
                             }
                         }
 
-                    if (currAttacker.affiliation == "Warrior") // add warrior type bonus
+                    if (currAttacker.affiliation == "Warrior" && currDefender.affiliation != "Warrior") // add warrior type bonus
                     {
                         currDefender.population -= 10000;
                         Console.WriteLine("{0}, the warriors, kill extra 10000. {1}'s population is now {2}.", currAttacker.name, currDefender.name, currDefender.population);
@@ -103,11 +110,11 @@ namespace GalaxyWars
                 }
             }
 
-            // base population decline
+                // base population decline
+            Console.WriteLine("As a result of war, all populations lose 20000 points.");
             foreach (AlienSpecies species in speciesList)
             {
                 species.population -= 20000;
-                Console.WriteLine("As a result of war, all populations lose 20000 points.");
                     if (species.population <= 0)
                     {
                     Console.WriteLine("***{0} is dead! GAME OVER***", species.name);
