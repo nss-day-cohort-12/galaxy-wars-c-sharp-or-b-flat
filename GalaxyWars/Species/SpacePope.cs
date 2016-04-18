@@ -7,7 +7,7 @@ using GalaxyWars.Species.Interfaces;
 
 namespace GalaxyWars.Species
 {
-  class SpacePope : Species, IReligious
+  class SpacePope : AlienSpecies, IReligious
   {
     public int faithRating { get; set; }
     public int autoHealRate { get; set; }
@@ -18,6 +18,7 @@ namespace GalaxyWars.Species
 
     public SpacePope()
     {
+      name = "Space Pope";
       population = 1000000;
       allowedVehicle = "Galactic Chariot";
       affiliation = "Religion";
@@ -25,6 +26,7 @@ namespace GalaxyWars.Species
 
     public SpacePope(string planet)
     {
+      name = "Space Pope";
       homePlanet = planet;
       population = 1000000;
       allowedVehicle = "Galactic Chariot";
