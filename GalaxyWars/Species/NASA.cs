@@ -7,7 +7,7 @@ using GalaxyWars.Species.Interfaces;
 
 namespace GalaxyWars.Species
 {
-  class NASA : Species, ISpaceFaring
+  class NASA : AlienSpecies, ISpaceFaring
   {
     public bool wearsLabCoat { get; set; }
     public int iq { get; set; }
@@ -18,6 +18,7 @@ namespace GalaxyWars.Species
 
     public NASA()
     {
+      name = "NASA";
       population = 1000000;
       allowedVehicle = "Space Bicycle";
       affiliation = "Science";
@@ -25,6 +26,7 @@ namespace GalaxyWars.Species
 
     public NASA(string planet)
     {
+       name = "NASA";
       homePlanet = planet;
       population = 1000000;
       allowedVehicle = "Space Bicycle";
