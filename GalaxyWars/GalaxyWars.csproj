@@ -45,6 +45,18 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Species\Interfaces\IReligious.cs" />
+    <Compile Include="Species\Interfaces\ISpaceFaring.cs" />
+    <Compile Include="Species\Interfaces\IWarrior.cs" />
+    <Compile Include="Species\NASA.cs" />
+    <Compile Include="Species\SpacePope.cs" />
+    <Compile Include="Species\Species.cs" />
+    <Compile Include="Species\StormTroopers.cs" />
+    <Compile Include="Vehicles\GalacticChariot.cs" />
+    <Compile Include="Vehicles\IntergalacticSubmarine.cs" />
+    <Compile Include="Vehicles\SpaceBicycle.cs" />
+    <Compile Include="Vehicles\SpaceTaxi.cs" />
+    <Compile Include="Vehicles\Vehicle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

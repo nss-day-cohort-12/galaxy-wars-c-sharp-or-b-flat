@@ -7,7 +7,7 @@ using GalaxyWars.Species.Interfaces;
 
 namespace GalaxyWars.Species
 {
-  class StormTroopers : Species, IWarrior
+  class StormTroopers : AlienSpecies, IWarrior
   {
     public int strength { get; set; }
     public int armorRating { get; set; }
@@ -18,6 +18,7 @@ namespace GalaxyWars.Species
 
     public StormTroopers()
     {
+      name = "Storm Troopers";
       population = 1000000;
       allowedVehicle = "Intergalactic Submarine";
       affiliation = "Warrior";
@@ -25,6 +26,7 @@ namespace GalaxyWars.Species
 
     public StormTroopers(string planet)
     {
+      name = "Space Pope";
       homePlanet = planet;
       population = 1000000;
       allowedVehicle = "Intergalactic Submarine";
